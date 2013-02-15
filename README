@@ -1,0 +1,60 @@
++ Olgierd Pilarczyk
++ Mariusz Sałdak 
++ Filip Rachwalak
+
+SpiceNetGen v1.0 beta
+
+Wymagania systemowe:
+	+ Python 2.6/2.7
+	+ PyGTK 2+
+
+Skrócona instrukcja użycia:
+
+- W pierwsze pole tekstowe należy wpisać wyrażenie na podstawie którego aplikacja
+  ma wygenerować netlistę. Aktualnie obsługiwane są wyrażenia podawane w postaci
+  iloczynowej, na przykład:
+	
+	a*b+c*~d
+
+  Gdzie poszczególne litery oznaczają odrębne zmienne.
+
+- Następnie należy wybrać typ tranzystorów z jakich układ ma zostać zbudowany.
+  W przypadku korzystania z MOS4 lub pliku technologicznego, należy podać odpowiednio
+  wymiary kanału przewodzącego lub ścieżkę do pliku technologicznego.
+
+- Po podaniu nazwy pliku wyjściowego i czasu symulacji, można kliknąć przycisk generuj.
+  Utworzona netlista zostanie zapisana w pliku.
+
+- Wskazanie ścieżki do pliku binarnego LtSpice 6 (scad3.exe) pozwala na automatyczne
+  uruchomienie symulacji dla podanego wyrażenia.
+
+
+Uwagi:
+
++ Zmiennym można nadawać dowolne nazwy.
++ Aktualnie obsługiwane są działania logiczne AND (*), OR (+), negacja (~).
++ Dla każdej zmiennej tworzony jest osobny sygnał zegarowy, jeżeli użyjemy wyrażenia postaci:
+
+	a*b+c*~b
+
+  utworzone zostana 3 sygnały sterujące: a, b i c.
+
+  Sygnał sterujący dla zmiennej n jest przebiegiem prostokątnym o napięciu 4V + 1/20n 
+  i okresie 2^n, tj:
+
+	pierwsza zmienna: 4.00V, T=1s
+	druga zmienna:    4.05V, T=2s
+	itd...
+
+
+
+
+
+
+
+
+
+
+
+
+
